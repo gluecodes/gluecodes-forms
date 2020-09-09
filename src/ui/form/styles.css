@@ -1,0 +1,35 @@
+.checkGroup {
+  display: block; /* just placeholder to generate this class */
+}
+
+/* bootstrap overrides */
+.font-weight-normal {
+  font-family: "Montserrat", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.btn {
+  margin-top: 5px;
+  margin-right: 5px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+select.form-control {
+  text-transform: capitalize;
+}
+
+select.form-control option {
+  text-transform: none;
+}
+
+select.form-control :nth-child(1) {
+  text-transform: capitalize;
+}
+
+@media (max-width: 767.98px) {
+  .btn {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+}

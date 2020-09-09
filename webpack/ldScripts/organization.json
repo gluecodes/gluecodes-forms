@@ -1,0 +1,30 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "alternateName": "",
+  "legalName": "",
+  "url": "https://www.glue.codes/",
+  "logo": "",
+  "sameAs": [
+    "https://www.facebook.com/gluecodes",
+    "https://www.linkedin.com/in/chris-czopp",
+    "https://github.com/gluecodes"
+  ],
+  "contactPoint": [
+    {
+      "@type": "contactPoint",
+      "contactType": "Customer Services",
+      "telephone": "",
+      "email": ""
+    }
+  ],
+  "location": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "",
+      "longitude": ""
+    }
+  }
+}

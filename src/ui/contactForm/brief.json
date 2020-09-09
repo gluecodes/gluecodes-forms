@@ -1,0 +1,11 @@
+{
+  "author": "GlueCodes",
+  "description": "Contact form with full validation",
+  "tags": [
+    "bootstrap",
+    "contact",
+    "form",
+    "reCaptcha",
+    "validation"
+  ]
+}

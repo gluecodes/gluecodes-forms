@@ -1,0 +1,65 @@
+.timeSlotWrapper {
+  width: 100%;
+  min-height: 350px;
+  padding: 20px;
+}
+
+.summary {
+  margin-bottom: 45px;
+}
+
+.timeOfDayText {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.availableHoursWrapper {
+  width: 80%;
+}
+
+.timeOfDaySelect {
+  margin-left: 15px;
+  min-width: 100px;
+}
+
+.timeOfDaySelect:focus {
+  outline: none;
+}
+
+.timeOfDayChoiceWrapper {
+  margin-bottom: 10px;
+}
+
+.availableHourButton {
+  padding: 5px 15px 5px 15px;
+  background-color: grey;
+  color: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  border: none;
+  width: 70px;
+  border-radius: .25rem;
+}
+
+.availableHourButton:focus {
+  outline: none;
+}
+
+.availableHourButton:hover {
+  color: white;
+  background-color: dimgrey;
+  text-decoration: none;
+}
+
+.activeTimeSlot {
+  background-color: dimgrey;
+}
+
+@media screen and (max-width: 767.98px) {
+  .timeOfDaySelect {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}

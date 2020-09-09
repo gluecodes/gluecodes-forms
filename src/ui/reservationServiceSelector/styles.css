@@ -1,0 +1,15 @@
+.service {
+  float: left;
+}
+
+.qty {
+  float: right;
+}
+
+.dropDown {
+  width: 45%;
+}
+
+.dropDown:focus {
+  outline: none;
+}

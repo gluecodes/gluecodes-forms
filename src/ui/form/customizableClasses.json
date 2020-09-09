@@ -1,0 +1,16 @@
+[
+  "alert",
+  "alert-danger",
+  "btn",
+  "font-weight-normal",
+  "form-check",
+  "form-check-inline",
+  "form-check-input",
+  "form-check-label",
+  "form-control",
+  "form-control-file",
+  "form-control-range",
+  "form-group",
+  "invalid-feedback",
+  "is-invalid"
+]

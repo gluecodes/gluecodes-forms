@@ -1,0 +1,15 @@
+@value width: 304px;
+@value height: 78px;
+
+.container {
+  position: relative;
+  width: width;
+  height: height;
+}
+
+.placeholder {
+  position: absolute;
+  width: width;
+  height: height;
+  background-color: #F9F9F9;
+}

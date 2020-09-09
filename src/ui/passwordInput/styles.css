@@ -1,0 +1,79 @@
+.isInvalid,
+.isPasswordMegaWeak,
+.isPasswordWeak,
+.isPasswordMedium,
+.isPasswordStrong,
+.stage {
+  color: inherit; /* just to generate these classes */
+}
+
+.passwordFormGroup {
+  position: relative;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  display: block;
+  width: 30px;
+  font-size: 20px;
+  line-height: calc(1.5em + .75rem - 4px);
+  text-align: center;
+}
+
+.isInvalid + .passwordToggle {
+  right: 20px;
+}
+
+.passwordShowIcon,
+.passwordHideIcon {
+  display: none;
+}
+
+[type="password"] + a .passwordShowIcon {
+  display: inline-block;
+}
+
+[type="text"] + a .passwordHideIcon {
+  display: inline-block;
+}
+
+.passwordWeakIndicator {
+  display: none;
+}
+
+.passwordMediumIndicator,
+.passwordStrongIndicator {
+  display: none;
+  margin-top: .25rem;
+  font-size: 80%;
+}
+
+.passwordMediumIndicator {
+  color: orange;
+}
+
+.passwordStrongIndicator {
+  color: green;
+}
+
+.isPasswordMegaWeak ~ .invalidFeedback .activeError,
+.isPasswordWeak ~ .invalidFeedback .activeError {
+  display: none;
+}
+
+.isPasswordMegaWeak ~ .invalidFeedback .passwordWeakIndicator,
+.isPasswordWeak ~ .invalidFeedback .passwordWeakIndicator {
+  display: inline;
+}
+
+.isPasswordMedium ~ .passwordMediumIndicator,
+.isPasswordStrong ~ .passwordStrongIndicator {
+  display: block;
+}
+
+.rememberPasswordCheckbox {
+  margin-top: 10px;
+  text-transform: capitalize;
+}

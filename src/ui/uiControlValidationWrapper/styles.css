@@ -1,0 +1,8 @@
+.uiControl {
+  color: inherit; /* just placeholder to generate this class */
+}
+
+/* bootstrap overrides */
+.font-weight-normal {
+  font-family: "Montserrat", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "inquiry",
+    "errorMessage": "Please correct highlighted fields below",
+    "properties": {
+      "title": {
+        "type": "string",
+        "title": "Title",
+        "oneOf": {
+          "type": "dictionary",
+          "items": {}
+        },
+        "errorMessage": "Please choose your title"
+      },
+      "name": {
+        "type": "string",
+        "title": "Full name",
+        "errorMessage": "Please type in your full name"
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "title": "Email",
+        "errorMessage": "Please type in a valid email address"
+      },
+      "subject": {
+        "type": "string",
+        "title": "Subject",
+        "errorMessage": "Please type in a subject of your message"
+      },
+      "message": {
+        "type": "string",
+        "format": "text",
+        "title": "Message",
+        "errorMessage": "Please type in a body of your message"
+      },
+      "captchaToken": {
+        "type": "string",
+        "format": "string",
+        "errorMessage": "Please prove you\"re human being"
+      }
+    }
+  }
+]

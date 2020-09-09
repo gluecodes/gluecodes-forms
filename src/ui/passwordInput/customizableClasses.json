@@ -1,0 +1,11 @@
+[
+  "form-check",
+  "form-check-input",
+  "form-control",
+  "form-group",
+  "invalid-feedback",
+  "is-invalid",
+  "passwordWeakIndicator",
+  "passwordMediumIndicator",
+  "passwordStrongIndicator"
+]

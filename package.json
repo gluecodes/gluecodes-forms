@@ -1,0 +1,42 @@
+{
+  "name": "@gluecodes/forms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./webpack/components.js --mode development",
+    "buildReusableFunctions": "webpack --config ./webpack/reusableFunctions.js --mode production",
+    "buildProd": "npm run buildReusableFunctions && node ./scripts/buildComponents.js",
+    "prerender": "webpack --config ./webpack/prerenders.js --mode development",
+    "start": "webpack-dev-server --config ./webpack/components.js --mode development",
+    "lint": "eslint . --ext .js --ext .jsx",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "GlueCodes LTD",
+  "license": "MIT",
+  "sideEffects": false,
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@gluecodes/components": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3.tar.gz",
+    "@gluecodes/components-cli": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3-cli.tar.gz",
+    "@gluecodes-functions/parseUrlQueryParams": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-parseUrlQueryParams-1.0.6.tar.gz",
+    "@gluecodes-functions/removeUrlQueryParam": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-removeUrlQueryParam-1.0.6.tar.gz",
+    "@gluecodes-functions/setUrlQueryParam": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-setUrlQueryParam-1.0.6.tar.gz",
+    "@gluecodes-functions/validateEmail": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validateEmail-1.0.6.tar.gz",
+    "@gluecodes-functions/validateFullName": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validateFullName-1.0.6.tar.gz",
+    "@gluecodes-functions/validatePhoneNumber": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validatePhoneNumber-1.0.6.tar.gz",
+    "bootstrap": "^4.3.1"
+  }
+}

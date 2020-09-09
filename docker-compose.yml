@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  gluecodes_forms:
+    build: .
+    container_name: gluecodes_forms
+    command: "npm start"
+    volumes:
+      - .:/src/gluecodes-forms:rw
+      - /src/gluecodes-forms/node_modules
+    ports:
+      - "3535:3535"
+    env_file:
+      - .env

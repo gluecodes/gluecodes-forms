@@ -1,0 +1,80 @@
+.font-weight-normal {
+  font-family: 'Roboto Slab', serif;
+}
+
+.reservationWrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.headlineContainer {
+  padding: 0;
+}
+
+.headlineBar {
+  height: 45px;
+}
+
+.contentWrapper {
+  padding-top: 50px;
+  min-height: 650px;
+  position: relative;
+}
+
+.navigationWrapper {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  padding: 20px;
+  height: 70px;
+}
+
+.navigationButton {
+  height: 30px;
+  width: 100px;
+  border: none;
+  background-color: grey;
+  color: black;
+  transition: background-color 0.2s ease-in;
+  border-radius: .25rem;
+}
+
+.navigationButton:hover {
+  background-color: dimgrey;
+}
+
+.navigationButton:focus {
+  outline: none;
+}
+
+.next {
+  float: right;
+}
+
+.complete {
+  margin-left: calc(50% - 75px);
+  width: 150px;
+}
+
+.prev {
+  float: left;
+}
+
+.headline {
+  height: 45px;
+  line-height: 45px;
+  background-color: darkgrey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+@media (max-width: 767.98px) {
+  .navigationWrapper {
+    position: sticky;
+    z-index: 900;
+  }
+
+  .productWrapper {
+    margin-bottom: 60px;
+  }
+}

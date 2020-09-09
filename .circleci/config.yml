@@ -1,0 +1,111 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14
+
+    working_directory: ~/gluecodes-forms
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install --production=false
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: generate index files
+          command: node ~/gluecodes-forms/scripts/generateIndexFiles.js
+      - run:
+          name: generate metadata files
+          command: node ~/gluecodes-forms/scripts/generateMetadataFiles.js
+      - run:
+          name: make ./src/init/renderer.js export a function which uses external renderer
+          command: echo 'export default function renderer (...args) { return renderer.handler(...args) }' > src/init/renderer.js
+      - run:
+          name: make ./src/init/glueDomRenderer.js export a function which uses external renderer
+          command: echo 'export default function renderer (...args) { return renderer.handler(...args) }' > src/init/glueDomRenderer.js
+      - run:
+          name: make ./src/init/glueDomPrerenderer.js export a function which uses external renderer
+          command: echo 'export default function renderer (...args) { return renderer.handler(...args) }' > src/init/glueDomPrerenderer.js
+      - run:
+          name: clear ld scripts
+          command: echo '{}' > webpack/ldScripts/organization.json
+      - run:
+          name: clear testing data functions
+          command: node ~/gluecodes-forms/scripts/clearTestingDataFunctions.js
+      - run: npm run buildProd
+      - run:
+          name: test
+          command: npm test
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/gluecodes-forms
+
+  deploy:
+    docker:
+      - image: circleci/python:2.7-jessie
+
+    working_directory: ~/gluecodes-forms
+
+    steps:
+      - run:
+          name: install awscli
+          command: sudo pip install awscli
+      - run:
+          name: update NodeJS
+          command: |
+            curl -sSL "https://nodejs.org/dist/v12.14.1/node-v12.14.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.14.1-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: delete componentVersions.json if exists
+          command: rm -f ~/gluecodes-forms/componentVersions.json
+      - run:
+          name: delete functionVersions.json if exists
+          command: rm -f ~/gluecodes-forms/functionVersions.json
+      - run:
+          name: delete componentList.json if exists
+          command: rm -f ~/gluecodes-forms/componentList.json
+      - run:
+          name: download componentVersions.json, functionVersions.json and componentList.json
+          command: aws s3 sync s3://gluecodes-forms/ ~/gluecodes-forms --exclude '*' --include 'componentVersions.json' --include 'functionVersions.json' --include 'componentList.json'
+      - run:
+          name: pack components
+          command: node ~/gluecodes-forms/scripts/packComponents.js
+      - run:
+          name: pack reusable functions
+          command: node ~/gluecodes-forms/scripts/packReusableFunctions.js
+      - run:
+          name: push new versions of components and versions backup
+          command: aws s3 cp ~/gluecodes-forms/dist/packages/ s3://gluecodes-forms/ --acl public-read --recursive --exclude '*' --include '*.tar.gz' --include '**/index.js' --include '**/styles.css' --include '**/testingData.json' --include '**/metadata.js' --include '**/assets/*' --include '**/thumbnail.jpg'
+      - run:
+          name: push updated componentVersions.json
+          command: aws s3 cp ~/gluecodes-forms/componentVersions.json s3://gluecodes-forms/componentVersions.json --acl public-read
+      - run:
+          name: push updated functionVersions.json
+          command: aws s3 cp ~/gluecodes-forms/functionVersions.json s3://gluecodes-forms/functionVersions.json --acl public-read
+      - run:
+          name: push updated componentList.json
+          command: aws s3 cp ~/gluecodes-forms/componentList.json s3://gluecodes-forms/componentList.json --acl public-read
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
