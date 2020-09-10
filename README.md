@@ -105,7 +105,7 @@ A component is made out of the following files:
 ```
 .
 |-- brief.json                  <-- details about the component
-|-- customizableClasses.json    <-- CSS classes to be custimizable from outside of your component.
+|-- customizableClasses.json    <-- CSS classes to be customizable from outside of your component.
 |-- getTestingData.js           <-- a function returning testing data that are passed to a component, these will be visible when inserting the component in GlueCodes IDE
 |-- googleFonts.json            <-- Google fonts to be imported, they will be preloaded at the app level
 |-- index.jsx                   <-- a JSX function which is your actual component
@@ -119,7 +119,7 @@ A component is made out of the following files:
 Few notes:
 
 - Keep your components as dummy presenters, they should be pure functions and communicate with outside world via callback props.
-- Think ahead what needs to be customizable and use appropriate class names, then add them to `custimizableClasses.json`.
+- Think ahead what needs to be customizable and use appropriate class names, then add them to `customizableClasses.json`.
 - You may be surprised that `index.jsx` and `prerender.js` might often mirror each other. It isn't ideal to have them duplicated but that's the cost of handling more complex cases where prerendered view is a base for more complex, dynamically constructed HTML (e.g. from Ajax'ed data).
 - Add the Google Fonts you want to import into `googleFonts.json`. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/googleFonts.md) about importing fonts and taking advantage of font preloading.
 - The `styles.css` should contain style declarations with class selectors. No worries about cross-page class name collisions as there is [CSS Modules](https://github.com/css-modules/css-modules) in place. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/stylingRules.md) about styling rules.
@@ -243,7 +243,7 @@ Instead of JSX, it returns a string template with an initial HTML. Note that pro
 - Remember to name CSS classes as `class` as prerenders are literal HTML.
 - Use string template interpolation `${}` instead of JSX `{}`.
 - Remember that tags like `<i>` whereas in JSX can be self-closed, in HTML they need a closing tag.
-- Use `externalStyles`, `fa`, `./styles.css` and `./custimizableClasses.json` as you would in JSX.
+- Use `externalStyles`, `fa`, `./styles.css` and `./customizableClasses.json` as you would in JSX.
 
 To see your changes, you need to run `prerender` and `build` scripts (described under "Available scripts"). Then, in Chrome open DevTools and press CTRL+P which will open a searchable list of things to turn on/off. Choose JavaScript and refresh the browser. You should now see your prerender.
 
