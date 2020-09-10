@@ -40,20 +40,21 @@ The above goals led us to take "convention over configuration" approach which yo
 - [Before shipping](#before-shipping)
 - [License](#license)
 - [Donate](#donate)
+- [Subscribe](#subscribe)
 
 ## Setup
 
 ### Prerequisites
 
 - Terminal (on Windows you may use PowerShell).
-- You must have Git installed.
+- You must have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
 - You must have [Docker](https://docs.docker.com/get-docker/) installed.
 
 ### Installation
 
 In your terminal, run the commands below:
 
-- Clone this repo: `git clone git@github.com:gluecodes/gluecodes-forms.git`.
+- Clone this repo: `git clone git@github.com:gluecodes/gluecodes-forms.git` or `git clone https://github.com/gluecodes/gluecodes-forms.git`.
 - Navigate to newly created `gluecodes-forms` directory and run: `docker-compose up --build`.
 - In the other tab/window, run: `docker exec -it gluecodes_forms npm run build`.
 
@@ -61,7 +62,7 @@ In your terminal, run the commands below:
 
 - To start the repo dev server run: `docker-compose up` in `gluecodes-forms` directory (Omit this step if you just went through the "Installation").
 - In your browser, navigate to: http://localhost:3535.
-- Select component from a top-left dropdown and follow the instructions on the screen. You'll find your own components there too, just keep reading.
+- Select a component from a top-left dropdown and follow the instructions on the screen. You'll find your own components there too, just keep reading.
 
 ## Become a contributor
 
@@ -78,7 +79,7 @@ We use a custom Git flow which is based on the feature branches, and branch name
 
 Always create your branch off master. When you're ready, just create a pull request. Remember to rebase onto `master` before requesting a code review in your pull request (`git rebase origin/master -i` and follow the instructions). You'll find more details in a pull request description template.
 
-IMPORTANT: choose a component name that doesn't exist in `src/ui` and there is no existing branch: `feature/yourComponentName` which would indicate someone has already took your name. After you created your local branch, push it straight away to reserve your name.
+IMPORTANT: choose a component name that doesn't exist in `src/ui` and there is no existing branch: `feature/yourComponentName` which would indicate someone has already taken your name. After you created your local branch, push it straight away to reserve your name.
 
 ### Available scripts
 
@@ -90,12 +91,12 @@ IMPORTANT: choose a component name that doesn't exist in `src/ui` and there is n
 
 ### Your first component
 
-- Choose your component name. Make sure it doesn't exist in `src/ui` and there is no existing branch `feature/yourComponentName` which would indicate someone has already took your name.
+- Choose your component name. Make sure it doesn't exist in `src/ui` and there is no existing branch `feature/yourComponentName` which would indicate someone has already taken your name.
 - Go to: `src/ui/` and duplicate one of the template components e.g. `aSimpleTemplate` directory naming it with your intended component name e.g. someFormName.
 - Run: `docker exec -it gluecodes_forms npm run prerender -- --component someFormName`.
 - Run: `docker exec -it gluecodes_forms npm run build -- --component someFormName`,
 - Restart `gluecodes_forms` container (CTRL+C in the window where the container runs) to gain access to live preview.
-- In your browser, navigate to: `http://localhost:3131/components/someFormName` where you should see a "hello world" text.
+- In your browser, navigate to: http://localhost:3535/components/someFormName where you should see a "hello world" text.
 - To turn it into something useful, you'll need play with the files inside `someFormName` directory. Keep reading.
 
 ### Anatomy of a component
@@ -105,13 +106,13 @@ A component is made out of the following files:
 ```
 .
 |-- brief.json                  <-- details about the component
-|-- customizableClasses.json    <-- CSS classes to be custimizable from outside of your component.
+|-- customizableClasses.json    <-- CSS classes to be customizable from outside of your component.
 |-- getTestingData.js           <-- a function returning testing data that are passed to a component, these will be visible when inserting the component in GlueCodes IDE
 |-- googleFonts.json            <-- Google fonts to be imported, they will be preloaded at the app level
 |-- index.jsx                   <-- a JSX function which is your actual component
 |-- prerender.js                <-- a function returning a string representation of your component HTML, it's used for prerendering
 |-- readme.js                   <-- a function returning full description of the component which is visible in GlueCodes IDE widget details
-|-- styles.css                  <-- styles which use Component CSS
+|-- styles.css                  <-- styles which use CSS Modules
 |-- test.js                     <-- it's the code which bootstraps your component for your local development purposes
 `-- thumbnail.jpg               <-- a screenshot of your component which is visible in GlueCodes IDE widget details
 ```
@@ -119,7 +120,7 @@ A component is made out of the following files:
 Few notes:
 
 - Keep your components as dummy presenters, they should be pure functions and communicate with outside world via callback props.
-- Think ahead what needs to be customizable and use appropriate class names, then add them to `custimizableClasses.json`.
+- Think ahead what needs to be customizable and use appropriate class names, then add them to `customizableClasses.json`.
 - You may be surprised that `index.jsx` and `prerender.js` might often mirror each other. It isn't ideal to have them duplicated but that's the cost of handling more complex cases where prerendered view is a base for more complex, dynamically constructed HTML (e.g. from Ajax'ed data).
 - Add the Google Fonts you want to import into `googleFonts.json`. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/googleFonts.md) about importing fonts and taking advantage of font preloading.
 - The `styles.css` should contain style declarations with class selectors. No worries about cross-page class name collisions as there is [CSS Modules](https://github.com/css-modules/css-modules) in place. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/stylingRules.md) about styling rules.
@@ -146,7 +147,7 @@ If you're coming from React, it should be familiar. In simple terms, component i
 Beyond internal differences to React, there are a few GlueCodes specific rules:
 
 - The `import externalStyles from '@app/styles'` imports app styles which may contain overrides of customizable classes (see Anatomy of a component above) and by default includes Bootstrap classes.
-- The `import fa from '@app/fa'` is a way to import font awesome and use their CSS classes.
+- The `import fa from '@app/fa'` is a way to import Font Awesome and use their CSS classes. Learn more about [Font Awesome](https://fontawesome.com/).
 - The `import styles from './styles.css'` gives you an object of hashed CSS classes you can use in JSX `className`'s to achieve scoped CSS.
 - As in the real world UI needs to be far more complex than this, there is more. Keep reading.
 
@@ -208,13 +209,15 @@ This is a function which passes `actions` (app actions) and `actionResults` (res
 - The `import '@app/providers/parseUrlQueryParams'` in JSX file runs `parseUrlQueryParams` prior initial rendering (the implementation can be found in: `src/common/providers/parseUrlQueryParams/index.js`).
 - Note that those actions are shared across all components and they should be named within a context of a whole app. Remember, these are app-wide actions which write to a single store. This is to avoid code duplication and maintain a domain-specific set of functions.
 - Note that when calling `actions.setUrlQueryParam()` the component will be rerendered. The subsequent `actions.reload()` is a built-in action which in addition to rerendering, it reloads all providers (in this example: `parseUrlQueryParams`). To avoid unnecessary rerendering, it would be better to use [actions.runTogether()](https://github.com/gluecodes/gluecodes-forms/blob/master/runTogether.md).
-- Your component might use multiple providers. They are called in a specific order prior initial rendering and pipe through `actionResults` to give a provider access to a result of previous one. Read more about [providers](https://github.com/gluecodes/gluecodes-forms/blob/master/providers.md) and how to define their execution order.
+- Your component might use multiple providers. They are called in a specific order prior initial rendering and pipe through `actionResults` to give a provider access to a result of the previous one. Read more about [providers](https://github.com/gluecodes/gluecodes-animals/blob/master/providers.md) and how to define their execution order.
 - Actions can be understood as controllers and having "fat controllers" is a bad practice. To avoid coupling even further, `reusableFunctions` have been introduced. Read more about [reusable functions](https://github.com/gluecodes/gluecodes-forms/blob/master/providers.md) and how you can use them as a "service" or "model" layer.
-- Note that the function have a default object assigned against the deconstructed `actionResults` and `actions`. This is because `./getTestingData` is also used by `./prerender.js` which doesn't have access to the browser environment i.e. JavaScript, DOM etc. Hence, in `./prerender.js`, `./getTestingData` is called without any args and the defaults emulate the simplest shape of the store to avoid reference errors. Read more about prerenders below.
+- Note that the function have a default object assigned against the deconstructed `actionResults` and `actions`. This is because `./getTestingData` is also used by `./prerender.js` which doesn't have access to the browser environment i.e. JavaScript, DOM etc. Hence, in `./prerender.js`, `./getTestingData` is called without any args and the defaults emulate the simplest shape of the store to avoid reference errors. Read more about [prerenders](#prerender) below.
 
-Remember that when installing a widget within [GlueCodes IDE](https://www.glue.codes), this function will be transformed and then inserted into the page code. This level of automation requires a few simple rules when writing your testing data function. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/getTestingData.md).
+Remember that when installing a widget within [GlueCodes IDE](https://www.glue.codes), the function exported by `./getTestingData.js` will be transformed and then inserted into the page code. This level of automation requires a few simple rules when writing your testing data function. [Read more](https://github.com/gluecodes/gluecodes-forms/blob/master/getTestingData.md).
 
 #### Prerender
+
+In terms of SEO, search engines reward pages with an instant "first contentful paint". Therefore, we want our components to be renderable as static HTML. 
 
 Here is a function which produces your component initial HTML before Virtual DOM kicks in:
 
@@ -243,7 +246,7 @@ Instead of JSX, it returns a string template with an initial HTML. Note that pro
 - Remember to name CSS classes as `class` as prerenders are literal HTML.
 - Use string template interpolation `${}` instead of JSX `{}`.
 - Remember that tags like `<i>` whereas in JSX can be self-closed, in HTML they need a closing tag.
-- Use `externalStyles`, `fa`, `./styles.css` and `./custimizableClasses.json` as you would in JSX.
+- Use `externalStyles`, `fa`, `./styles.css` and `./customizableClasses.json` as you would in JSX.
 
 To see your changes, you need to run `prerender` and `build` scripts (described under "Available scripts"). Then, in Chrome open DevTools and press CTRL+P which will open a searchable list of things to turn on/off. Choose JavaScript and refresh the browser. You should now see your prerender.
 
@@ -345,3 +348,11 @@ The [IDE](https://www.glue.codes) users will likely want to preview a widget bef
 Whether you're an active contributor or not, have direct impact on [GlueCodes Platform](https://www.glue.codes). Vote for new features and be involved in shaping the roadmap. Join one of our memberships by clicking below.
 
 <p><a href="https://www.patreon.com/GlueCodes" target="_blank" rel="noopener noreferrer"><img src="https://github.com/gluecodes/gluecodes-forms/blob/master/mediaFiles/images/patreonLogo.png" alt="GlueCodes Patreon"></a></p>
+
+## Subscribe
+
+Subscribe to our social media channels for tutorials and latest news.
+
+- [YouTube](https://www.youtube.com/channel/UCDtO8rCRAYyzM6pRXy39__A?view_as=subscriber)
+- [Facebook](https://www.facebook.com/glue.codes)
+- [LinkedIn](https://www.linkedin.com/company/gluecodes)
