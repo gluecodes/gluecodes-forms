@@ -348,3 +348,11 @@ The [IDE](https://www.glue.codes) users will likely want to preview a widget bef
 Whether you're an active contributor or not, have direct impact on [GlueCodes Platform](https://www.glue.codes). Vote for new features and be involved in shaping the roadmap. Join one of our memberships by clicking below.
 
 <p><a href="https://www.patreon.com/GlueCodes" target="_blank" rel="noopener noreferrer"><img src="https://github.com/gluecodes/gluecodes-forms/blob/master/mediaFiles/images/patreonLogo.png" alt="GlueCodes Patreon"></a></p>
+
+## Subscribe
+
+Subscribe to our social media channels for tutorials and latest news.
+
+- [YouTube](https://www.youtube.com/channel/UCDtO8rCRAYyzM6pRXy39__A?view_as=subscriber)
+- [Facebook](https://www.facebook.com/glue.codes)
+- [LinkedIn](https://www.linkedin.com/company/gluecodes)
