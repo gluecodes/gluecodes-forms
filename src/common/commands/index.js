@@ -9,3 +9,5 @@ export { default as requestReservationPage } from './requestReservationPage/inde
 export { default as setUrlQueryParam } from './setUrlQueryParam/index'
 export { default as submitInquiry } from './submitInquiry/index'
 export { default as submitReservationInquiry } from './submitReservationInquiry/index'
+export { default as setPageSearchTerm } from './setPageSearchTerm/index'
+export { default as submitPageSearch } from './submitPageSearch/index'
