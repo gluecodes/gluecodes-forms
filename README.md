@@ -114,7 +114,7 @@ A component is made out of the following files:
 |-- readme.js                   <-- a function returning full description of the component which is visible in GlueCodes IDE widget details
 |-- styles.css                  <-- styles which use CSS Modules
 |-- test.js                     <-- it's the code which bootstraps your component for your local development purposes
-`-- thumbnail.jpg               <-- a screenshot of your component which is visible in GlueCodes IDE widget details
+|-- thumbnail.jpg               <-- a screenshot of your component which is visible in GlueCodes IDE widget details
 ```
 
 Few notes:
