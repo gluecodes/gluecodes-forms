@@ -29,14 +29,14 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
-    "@gluecodes/components": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3.tar.gz",
-    "@gluecodes/components-cli": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3-cli.tar.gz",
     "@gluecodes-functions/parseUrlQueryParams": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-parseUrlQueryParams-1.0.6.tar.gz",
     "@gluecodes-functions/removeUrlQueryParam": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-removeUrlQueryParam-1.0.6.tar.gz",
     "@gluecodes-functions/setUrlQueryParam": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-setUrlQueryParam-1.0.6.tar.gz",
     "@gluecodes-functions/validateEmail": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validateEmail-1.0.6.tar.gz",
     "@gluecodes-functions/validateFullName": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validateFullName-1.0.6.tar.gz",
     "@gluecodes-functions/validatePhoneNumber": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/reusable-validatePhoneNumber-1.0.6.tar.gz",
+    "@gluecodes/components": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3.tar.gz",
+    "@gluecodes/components-cli": "http://gluecodes-components.s3-website-eu-west-1.amazonaws.com/components-1.0.3-cli.tar.gz",
     "bootstrap": "^4.3.1"
   }
 }
